@@ -1,0 +1,181 @@
+\documentclass[12pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{tabularx}
+\usepackage{hyperref}
+%\usepackage{mathrsfs}
+\usetheme{Copenhagen}
+
+\usecolortheme{wolverine}
+
+\title{Edge Coloring}
+\author{Naina Kumari}
+\institute{\begin{large}
+IIT DELHI
+\begin{figure}[h]
+\includegraphics[scale=0.5]{logo_d}
+\end{figure}
+
+\end{large}}
+
+\begin{document}
+\maketitle
+
+\begin{frame}
+\begin{block}{What is edge coloring ? }
+An edge coloring of a graph G is a mapping f :E(G) $\rightarrow$ S.The elements of S are colors . The edges colored by same color foem a color class . If $|S| = k $, then f is a k-edge coloring of G.
+\end{block}
+\end{frame}
+
+\begin{frame}{Line Graph}
+A line graph L(G) of a simple graph G is obtained by associating a vertex with each edge of the graph and connecting two vertices with an edge iff the corresponding edges of G have a vertex in common
+\begin{figure}
+\includegraphics[scale=0.2]{line_graph.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Important Points}
+\begin{itemize}
+\item Every edge coloring problem can be converted into a vertex coloring problem.
+\item Coloring the edges of a graph G is same as coloring the vertices of the line graph L(G)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+In general , $\chi(G) \geq \Delta$ where $\Delta$ = max. degree of a vertex in G for any graph G .
+\end{frame}
+
+\begin{frame}
+\begin{block}{Bipartite Graphs}
+A bipartite graph is a graph in which the vertex set can be partitioned into two sets such that edges only go between sets, not within them.
+\end{block}
+\begin{figure}
+\includegraphics[scale=0.7]{bip_graph.png}
+\caption{Fig 5 : Bipartite Graph}
+\end{figure}
+\end{frame}
+
+
+
+\begin{frame}{Bipartite Graphs}
+\begin{block}{Konig's Theorem}
+If G is bipartite , then $\chi(G) = \Delta$ where $\Delta$ = max. degree of a vertex in G
+\end{block}
+
+\begin{figure}
+\includegraphics[scale=0.3]{bip.jpg}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+Let $m = $ no. of edges in G \\
+\underline{Base Case}: m $=$ 1\\
+It is trivially true \\~\\
+
+So , let's assume the statement is true for any graph G with m edges\\~\\
+\underline{Inductive Step}: Let there be m+1 edges in a graph G with max. degree = $\Delta$ \\~\\
+Claim: $\chi(G) = \Delta$
+\end{frame}
+
+\begin{frame}{Proof}
+Remove an arbitrary edge say (A,B) from G , call this subgraph G'\\~\\
+By Induction Hypothesis , G' can be colored with $\Delta$ colours .
+
+\begin{figure}
+\includegraphics[scale=0.5]{G'.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+
+Since max. degree = $\Delta$, deg(A) $\leq \Delta - 1$\\
+and deg(B) $\leq \Delta - 1$ \underline{in G'} \\
+It means A and B can also use $\Delta$ colors each and so , both A and B each have one unused color , $\alpha$ and $\beta$ respectively.\\~\\
+
+\begin{figure}
+\includegraphics[scale=0.5]{case1.png}
+\end{figure}
+
+Case 1 : $\alpha = \beta$ ,\\
+
+then we can use this colour to colour (A,B)
+
+\begin{figure}
+\includegraphics[scale=0.5]{case11.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{}
+
+Case 2 : $\alpha \neq \beta$ \\
+\begin{figure}
+\includegraphics[scale=0.4]{bip_1}
+\end{figure}
+Clearly , there is a blue edge incident on A (otherwise it would be case 1) , let that edge be incident on some vertex B1.
+
+\begin{figure}
+\includegraphics[scale=0.4]{bip_2}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+Subcase 2.1 : There is no red edge incident on B1 . It means Red is available at B1 . \\
+So , color (A,B1) with red .
+\begin{figure}
+\includegraphics[scale=0.4]{bip_3}
+\end{figure}
+
+Subcase 2.2 : There is a red edge incident on B1 .
+\begin{figure}
+\includegraphics[scale=0.4]{bip_4}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+Subcase 2.2.1 : There is no blue edge incident on A1 .
+\begin{figure}
+\includegraphics[scale=0.4]{bip_7}
+\end{figure}
+
+
+\end{frame}
+
+\begin{frame}
+Subcase 2.2.2 : There is a blue edge incident on A1 . 
+\begin{figure}
+\includegraphics[scale=0.4]{bip_5}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\begin{figure}
+\includegraphics[scale=0.4]{bip_8}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\begin{figure}
+\includegraphics[scale=0.4]{bip_9}
+\end{figure}
+So , (A,B) gets coloured without using any extra color .
+Therefore $\chi(G) = \Delta$ 
+\end{frame}
+
+
+\begin{frame}
+Thus , the proof of Konig's Theorem is complete .
+\end{frame}
+
+\begin{frame}{References}
+        \begin{itemize}
+            \item Graph Theory with Applications to Engineering and Computer Science by Narsingha Deo
+            \item GRAPH THEORY WITH APPLICATIONS by J. A. Bondy and U. S. R. Murty
+        \end{itemize}
+    \end{frame}
+
+\begin{frame}
+\LARGE{\textbf{THANK YOU}} 
+\end{frame}
+
+\end{document}

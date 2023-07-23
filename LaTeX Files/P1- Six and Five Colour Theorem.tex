@@ -1,0 +1,348 @@
+\documentclass[12pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{tabularx}
+\usepackage{hyperref}
+%\usepackage{mathrsfs}
+\usetheme{Copenhagen}
+
+\usecolortheme{wolverine}
+
+\title{Colourability of planar graphs}
+\author{Naina Kumari}
+\institute{\begin{large}
+IIT DELHI
+\begin{figure}[h]
+\includegraphics[scale=0.5]{logo_d}
+\end{figure}
+
+\end{large}}
+\begin{document}
+\setbeamertemplate{caption}{\raggedright\insertcaption\par}
+\maketitle
+
+\begin{frame}{Contents}
+\begin{itemize}
+\item What is a Graph ?
+\item Types Of Graphs 
+\item Vertex Colouring
+\item Chromatic Number 
+\item Six Colour Theorem 
+\item Five Colour Theorem 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{What is a Graph ?}
+A graph (denoted as $G=(V,E))$ consists of a non-empty set of vertices or nodes $V$ and a set of edges $E$ \\
+\end{frame}
+
+\begin{frame}
+\begin{example}
+Let us consider, a Graph $G=(V,E)$ where $V={a,b,c,d}$ and $E={{a,b},{a,c},{b,c},{c,d}}$
+\end{example}
+
+\begin{figure}
+\includegraphics[scale=0.8]{graph_def.jpg}
+\caption{Fig 1 : Graph }
+\end{figure}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Empty/Null Graph}
+A null graph is a graph in which there are no edges between its \hyperlink{page.22}{vertices}. 
+\begin{figure}
+\includegraphics[scale=0.8]{null_graph.png}
+\caption{Fig 2 : Empty Graph}
+\end{figure}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Simple Graph}
+A graph is simple if it has no loops and no two of its links join the same pair of vertices$($i.e. no multiple edges$)$.
+A simple graph which has n vertices, the degree of every vertex is at most n -1.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{figure}
+\includegraphics[scale=0.7]{simple_graph.png}
+\caption{Fig 3}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\begin{block}{Connected Graphs}
+A connected graph is a graph in which we can visit from any one vertex to any other vertex. In a connected graph, at least one edge or path exists between every pair of vertices.
+\end{block}
+\begin{figure}
+\includegraphics[scale=0.7]{conn_graph.png}
+\caption{Fig 4 : Connected Graph}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Bipartite Graphs}
+A bipartite graph is a graph in which the vertex set can be partitioned into two sets such that edges only go between sets, not within \hyperlink{page.22}{them} .
+\begin{figure}
+\includegraphics[scale=0.7]{bip_graph.png}
+\caption{Fig 5 : Bipartite Graph}
+\end{figure}
+
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{PLANAR GRAPHS}
+A planar graph is a graph that we can draw in a plane in such a way that no two edges of it cross each other except at a vertex to which they are incident.
+
+\end{block}
+\begin{figure}
+\includegraphics[scale=0.5]{planar-graph.jpg}
+\caption{Fig 6 : Planar Graph}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Euler's Formula for Planar Graphs}
+For any connected planar graph with 
+$v$ vertices, $e$ edges and $f$ faces, we have
+$$ v-e+f=2 $$
+\end{block}
+\underline {It can be proved by induction .}
+\end{frame}
+
+\begin{frame}
+\begin{block}{NON PLANAR GRAPHS}
+A graph is said to be non planar if it cannot be drawn in a plane so that no edge cross.
+\end{block}
+\begin{figure}
+\centering
+\includegraphics[scale=0.5]{non_pl.jpg}
+\caption{Fig 7 : Non Planar Graph}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\begin{block}{What is Vertex Colouring ?}
+Vertex coloring is the procedure of assignment of colors to each vertex of a graph G such that no adjacent vertices get same color.
+\end{block}
+\begin{figure}
+\centering
+\includegraphics[scale=0.3]{v_c.png}
+\caption{Fig 8 : Vertex Colouring}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Remark}
+The objective is to minimize the number of colors while coloring a graph.
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}
+\begin{large}
+We will restrict our discussion to simple graphs . Why ?
+\end{large}
+\end{frame}
+
+\begin{frame}
+\begin{block}{What is a subgraph ? }
+A graph H is a subgraph of G (written H $\subset $ G) if $V(H) \subset V(G)$ and $ E(H)\subset E(G)$
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{What is a spanning subgraph ? }
+A spanning subgraph (or spanning supergraph) of G is
+a subgraph(or supergraph) H with $V(H) = V(G)$.
+\end{block}
+\begin{figure}
+\includegraphics[scale=0.4]{spna.png}
+\caption{Fig 9 : Spanning subgraph}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\begin{block}{Underlying Simple Graph}
+By deleting from a graph G all loops and, for every pair of adjacent vertices , all but one link joining them, we obtain a simple spanning subgraph of G, called the underlying simple graph of G
+\end{block}
+\end{frame}
+
+\begin{frame}{A graph and its underlying simple graph}
+\begin{figure}
+\includegraphics[scale=0.4]{und_sim.png}
+\caption{Fig 10 : Underlying Simple Graph}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Remark}
+A graph can be vertex coloured with k colours iff its underlying simple graph can be vertex coloured with k colours .
+\end{block}
+\end{frame}
+
+\begin{frame}{Chromatic Number}
+The chromatic number $\chi(G)$
+is the minimum positive integer k for which G is k colourable .\\
+
+if $\chi(G) = k $, G is said to be
+k-chromatic.
+\end{frame}
+
+\begin{frame}{Some Important Observations}
+\begin{itemize}
+\item[1] $)$ A simple graph is 1-colourable if and only if it is \hyperlink{page.5}{empty}  .
+\item[2] $)$ A simple graph is 2-colourable if and only if it is \hyperlink{page.9}{bipartite} 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Six Colour Theorem}
+\begin{large}
+The vertices of every planar graph can be colored using 6 colors
+in such a way that no pair of vertices connected by an edge share the same color . 
+\end{large}
+\begin{figure}
+\includegraphics[scale=0.6]{six.png}
+\caption{Fig 11}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Lemma 1.1}
+\underline {\large{Statement}}  \\
+In every planar graph , there exists a vertex of degree at most 5 .\\
+\underline {\large{Proof}}\\
+Let , if possible , $\exists$ a planar graph s.t. all n vertices have degree $\geq$ 6 i.e. $d(v_i) \geq 6$ \\
+By First Theorem of \hyperlink{page.27}{Graph Theory} , $\sum_{i=1}^{n} d(v_i) = 2e$\\
+and $$e \leq 3v-6 $$ \\
+$$\implies  2e \leq 6v-12$$  
+\end{frame}
+
+\begin{frame}
+Also , we assumed $d(v_i) \geq 6$ , so \\
+$$ 2e =  \sum_{i=1}^{n} d(v_i) \geq 6v  > 6v - 12$$
+$$\implies 2e \geq 6v-12 $$ \\
+which is contradiction to  $$e \leq 3v-6 $$
+\end{frame}
+
+\begin{frame}{Proof by induction}
+If no. of vertices $($v$)\leq 6$ , then it is trivially true . \\
+\begin{figure}
+\includegraphics[scale=0.3]{five.png}
+\caption{Fig 12}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\underline {\large{Base Case}} n = 1 is trivial .
+
+Let us assume it is true for n = k vertices .\\
+\underline {\large{Inductive Step}} : For n = k+1 \\
+From \hyperlink{page.24}{Lemma 1.1} , G must contain a vertex of degree $\leq$ 5 . \\
+Choose that vertex , denote it as u and now consider $G \setminus \{u\}$ , say G'\\
+\begin{figure}
+\includegraphics[scale=0.5]{6color2.png}
+\caption{Fig 13}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+Now ,clearly , a planar graph remains planar after removing a finite number of vertices , so \\
+ G' is planar with k vertices . Now , we can use our induction hypothesis to say that G' can be coloured with 6 colours .\\
+\end{frame}
+
+\begin{frame}
+Now we can think of this as colouring all of G except u . \\
+But since , u has degree $\leq$ 5 , one of the six colours will not be used for any of the neighbours of u . 
+Choose that colour to colour u . \\
+Thus , G is coloured with 6 colours . \\
+And so it is true for n = k+1 .\\
+Since k was arbitrary , it is true for all natural numbers . 
+\end{frame}
+
+\begin{frame}{Five Colour Theorem}
+\begin{large}
+The vertices of every planar graph can be colored using 5 colors
+in such a way that no pair of vertices connected by an edge share the same color . 
+\end{large}
+\end{frame}
+
+\begin{frame}{Proof by induction}
+If no. of vertices $($v$) \leq 5$ , then it is trivially true . \\
+\underline {\large{Base Case}} n = 1 is trivial .
+
+Let us assume it is true for n = k vertices .\\
+\underline {\large{Inductive Step}} : For n = k+1 \\
+From Lemma 1.1 , G must contain a vertex of degree $\leq$ 5 . \\
+Choose that vertex , denote it as v and now consider $G \setminus \{v\}$ , say G'\\
+
+Now ,clearly , a planar graph remains planar after removing a finite number of vertices , so \\
+ G' is planar with k vertices . Now , we can use our induction hypothesis to say that G' can be coloured with 5 colours .\\
+\end{frame}
+
+
+\begin{frame}
+\underline{Let's consider colouring of v} \newline \newline
+\underline{\large{Case 1:}} deg(v) $\leq$ 4 , then it is trivial .\\
+\begin{figure}
+\includegraphics[scale=0.5]{five_11n.png}
+\caption{Fig 14}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\underline{\large{Case 2:}} deg(v) = 5 , then there are two subcases .\newline \newline
+\begin{figure}
+\includegraphics[scale=0.5]{five_12n.png}
+\caption{Fig 15}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+Case 1 : $\exists$ no two vertices that are directly connected by an edge.
+\begin{figure}
+\includegraphics[scale=0.5]{five_13n.png}
+\caption{Fig 15}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+Case 2 : $\exists$ two vertices that are directly connected by an edge.
+\begin{figure}
+\includegraphics[scale=0.5]{five_14n.png}
+\end{figure}
+Suppose there is a path between vertices a and c, say a$\rightarrow v_1
+\rightarrow v_2 \rightarrow ... \rightarrow v_n \rightarrow$ c.
+\end{frame}
+
+
+
+
+\begin{frame}
+\begin{figure}
+\includegraphics[scale=0.5]{five_15n.png}
+\end{figure}
+Color alternatively a by red, v1 by yellow, v2 by red, and so on.
+\end{frame}
+
+\begin{frame}
+\begin{figure}
+\includegraphics[scale=0.5]{five_15n.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+According to the property of planar graphs, there is no similar path between b and d (because it will intersect the path a and c). Hence there is no path of alternating colors p2 and p4 through vertices b and d. So, vertex d can be painted with the color p2 and vertex b is still with the color p2. Now we have color p4 left over with which we can paint vertex v.\newline
+
+\Large{Hence , the five colour theorem is proved .}
+\end{frame}
+
+
+
+
+\end{document}

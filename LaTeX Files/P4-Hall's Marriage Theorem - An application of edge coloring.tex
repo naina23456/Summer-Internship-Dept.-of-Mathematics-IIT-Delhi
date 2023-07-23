@@ -1,0 +1,213 @@
+\documentclass[12pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+%\usepackage{mathrsfs}
+\usetheme{Copenhagen}
+
+\usecolortheme{wolverine}
+
+\title{Hall's Theorem}
+\author{Naina Kumari}
+\institute{\begin{large}
+IIT DELHI
+\begin{figure}[h]
+\includegraphics[scale=0.5]{logo_d}
+\end{figure}
+
+\end{large}}
+
+\begin{document}
+\maketitle
+
+\begin{frame}{Applications}
+\Large{\textbf{\underline{Problem Statement}}}\\
+A set of job applicants have applied for a set of jobs. We want to assign , to each job,an applicant who is qualified for it. Under which conditions is this possible ?
+\end{frame}
+
+\begin{frame}
+\begin{example}
+Applicants $a_1 , a_2,....,a_5 $ have applied for jobs $j_1,j_2,j_3$ and $j_4$
+\end{example}\\~\\
+ \begin{tabularx}{1\textwidth} { 
+  | >{\raggedright\arraybackslash}X  
+  | >{\centering\arraybackslash}X |}
+ \hline
+ \textbf{Job} & \textbf{Qualified Applicants}\\
+   \hline
+   $j_1 & a_1,a_4,a_5 $\\
+   $j_2 & a_1$\\
+   $j_3& a_2,a_3,a_4 $\\
+   $j_4 & a_2,a_4 $\\
+   \hline
+  \end{tabularx} \\~\\ 
+  
+A solution would be 1-1 correspondence between the set of J jobs and a subset of the set A of applicants .
+\end{frame}
+
+\begin{frame}{Mathematical Model}
+Bipartite graph $G(J,A)$(i.e with J jobs , A applicants) with an edge from j $\in$ J to a $\in$ A $\iff$ a is qualified for j.
+\begin{figure}
+\includegraphics[scale=0.4]{job_app.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\begin{figure}
+\includegraphics[scale=0.7]{job_app_!.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+A \textbf{complete matching} from J to A is a 1-1 correspondence between J and a subset of A , such that the corresponding vertices are adjacent.
+\end{frame}
+
+\begin{frame}
+\textcolor{blue}{\Large\underline{{Question}}}\\~\\
+When does a complete matching exist ?\\~\\
+
+\textcolor{blue}{\Large\underline{{Necessary condition}}}\\~\\
+Each set of k jobs must have at least k "jointly qualified" applicants i.e. each of them is qualified for at least one of these jobs . 
+This must hold for every 1 $\leq$ k $\leq$ $|J|$
+\end{frame}
+
+\begin{frame}
+\textcolor{blue}{\Large{The necessary condition is also sufficient}}\\~\\
+\textcolor{blue}{\Large{  Theorem(Hall , 1935)}}\\~\\
+In the bipartite graph G(V1,V2) , there is a complete matching from $V_1$ to $V_2$ if and only if for each subset A $\subset$ $V_1$, $|N(A)|\geq |A|$
+\end{frame}
+
+\begin{frame}{Proof}{Necessary Part}
+\underline{\textbf{To prove : }} There exists a complete matching from $V_1$ to $V_2$ only if $|N(A)| \geq |A|$\\
+$\thinmuskip$ $\approx$ \\
+if $|N(A)| < |A|$ , then no complete matching from $V_1$ to $V_2$\\
+$\thinmuskip$ $\approx$ \\
+if there exists complete matching from $V_1$ to $V_2$ then $|N(A)| \geq |A|$
+\end{frame}
+
+\begin{frame}
+Let M be a complete matching from $V_1$ to $V_2$\\~\\
+Every node in A must be the end point of some distinct edge in M.\\
+$\implies |N(A)| \geq |A|$
+\end{frame}
+
+
+\begin{frame}{Proof(Sufficiency Condition--Induction on $|V_1|$))}
+We will give an existential proof .
+\underline{\textbf{Base Case :}}$ |V_1| = 1$\\~\\
+\begin{figure}[h]
+\includegraphics[scale=0.5]{base_case.png}
+\end{figure}
+Given the condition , the only subset A = $\{u\}$ will have at least one neighbour . Trivially ,there exists a complete matching - An edge whose end point is u (either (u,v) or (u,w)) in this case.
+\end{frame}
+
+\begin{frame}{Proof(Sufficiency Condition--Induction on $|V_1|$)}
+\underline{\textbf{Inductive Hypothesis :}}\\
+For every bipartite graph G $=$ (V,E) with bipartition ($V_1$,$V_2$),where $V_1 \leq k$, such that $|N(A)| \geq |A|$ for all A $\subset$ $V_1$, a complete matching from $V_1$ to $V_2$ exists.\\~\\
+
+\underline{\textbf{Inductive Step :}}\\ 
+Consider a bipartite graph G with bipartition ($V_1$,$V_2$) where $|V_1| = k+1$,such that $|N(A)| \geq |A|$ for all A $\subset$ $V_1$
+\end{frame}
+
+\begin{frame}
+\underline{\textbf{Goal :}}\\
+To show the existence of a complete matching from $V_1$ to $V_2$\\~\\
+
+\underline{\textbf{Case I :}}
+Every k-sized subset A of $V_1$ has at least k+1 neighbours in $V_2$.
+\begin{figure}[h]
+\includegraphics[scale=0.5]{cas1.png}
+\end{figure}
+
+$\{k = 3$ for demonstration purpose only $\}$
+\end{frame}
+
+\begin{frame}
+\underline{\textbf{Case II :}}\\
+There is a k sized subset of $V_1$ that has exactly k neighbours.\
+\begin{figure}[h]
+\includegraphics[scale=0.5]{cas2.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Case I}
+\begin{figure}[h]
+\includegraphics[scale=0.3]{cas21.png}
+\end{figure}
+Consider any vertex u $\in$ $V_1$ and one of its adjacent edges in $V_2$,say v 
+\begin{figure}[h]
+\includegraphics[scale=0.3]{cas22.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+Let $V_1'$ = $V_1$ - $\{u\}$ and $V_2'$ = $V_2$ - $\{v\}$
+\begin{figure}
+\includegraphics[scale=0.4]{cas211.png}
+\end{figure}
+
+($V_1'$,$V_2'$) : bipartition of the reduced graph 
+\end{frame}
+
+\begin{frame}
+$|V_1'|=k$ and \\~\\
+\underline{\textbf{Claim :}}$|N(A)| \geq |A|$ for all A $\subset V_1$ \\
+i.e. $V_1'$ has at least k neighbours in $V_2'$\\~\\
+Since $V_1$ has at least k+1 neighbours in $V_2$ , so it's trivially true.
+\begin{figure}
+\includegraphics[scale=0.4]{cas2111.png}
+\end{figure}
+
+From inductive hypothesis , there is a complete matching , say M,from $V_1'$ to $V_2'$ \\~\\ 
+\textcolor{blue}{\underline{Now M $\cup \{(u,v)\}$:complete matching from $V_1$ to $V_2$}}
+\end{frame}
+
+\begin{frame}{Case II}
+Let S $\subset$ $V_1$ such that $|S| = k$ and T = N(S) with $|T| = k$.\\
+
+By Inductive Hypothesis , a complete matching , say M ,exists from S to T.\\
+\begin{figure}
+\includegraphics[scale=0.4]{ST match.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+Let $V_1'$ = $V_1$ - S and $V_2'$ = $V_2$ - T.
+Now , $|V_1'| = 1$ and 
+\underline{\textbf{Claim :}} $V_1'$ has at least 1 neighbour in $V_2'$.\\\begin{figure}[h]
+\includegraphics[scale=0.5]{cas2211.png}
+\end{figure}
+Otherwise 
+It implies that $V_1$ has only k neighbours in $V_2$ , (contradiction to  $|N(A)| \geq |A|$ for all A $\subset$ $V_1$)\\~\\
+
+From Inductive Hypothesis , there is a complete matching say M' ,from $V_1'$ to $V_2'$ .
+
+\end{frame}
+
+\begin{frame}
+\begin{figure}[h]
+\includegraphics[scale=0.5]{cas22112.png}
+\end{figure}
+M $\cup$ M' is a complete matching from $V_1$ to $V_2$
+\begin{figure}[h]
+\includegraphics[scale=0.5]{ST Match 1.png}
+\end{figure}
+
+Thus , Hall's Theorem is proved . 
+\end{frame}
+
+\begin{frame}{References}
+        \begin{itemize}
+            \item Introduction to Graph Theory by Douglas B.West
+            \item GRAPH THEORY WITH APPLICATIONS by J. A. Bondy and U. S. R. Murty
+
+        \end{itemize}
+    \end{frame}
+
+\begin{frame}
+\LARGE{\textbf{THANK YOU}} 
+\end{frame}
+
+
+\end{document}

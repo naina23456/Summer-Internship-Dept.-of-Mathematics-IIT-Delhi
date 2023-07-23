@@ -1,0 +1,404 @@
+\documentclass[12pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{tabularx}
+\usepackage{hyperref}
+%\usepackage{mathrsfs}
+\usetheme{Copenhagen}
+
+\usecolortheme{wolverine}
+
+\title{Four Color Theorem - Proofs and Counterexamples }
+\author{Naina Kumari}
+\institute{\begin{large}
+IIT DELHI
+\begin{figure}[h]
+\includegraphics[scale=0.5]{logo_d}
+\end{figure}
+
+\end{large}}
+\begin{document}
+\setbeamertemplate{caption}{\raggedright\insertcaption\par}
+\maketitle
+
+\begin{frame}{Contents}
+\begin{itemize}
+\item Four Color Theorem
+\item Kempe's Proof 
+\item The flaw in Kempe's Proof 
+\item The Computational Proof 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Four Colour Theorem}
+\begin{large}
+The vertices of every planar graph can be colored using 4 colors
+in such a way that no pair of vertices connected by an edge share the same color . 
+\end{large}
+\begin{figure}
+\includegraphics[scale=0.07]{four.pn.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Lemma 1.1}
+\underline {\large{Statement}}  \\
+In every planar graph , there exists a vertex of degree at most 5 .\\
+\underline {\large{Proof}}\\
+Let , if possible , $\exists$ a planar graph s.t. all n vertices have degree $\geq$ 6 i.e. $d(v_i) \geq 6$ \\
+By First Theorem of \hyperlink{page.27}{Graph Theory} , $\sum_{i=1}^{n} d(v_i) = 2e$\\
+and $$e \leq 3v-6 $$ \\
+$$\implies  2e \leq 6v-12$$  
+\end{frame}
+
+\begin{frame}
+Also , we assumed $d(v_i) \geq 6$ , so \\
+$$ 2e =  \sum_{i=1}^{n} d(v_i) \geq 6v  > 6v - 12$$
+$$\implies 2e \geq 6v-12 $$ \\
+which is contradiction to  $$e \leq 3v-6 $$
+\end{frame}
+
+\begin{frame}{Proof by induction}
+If no. of vertices $($v$)\leq 4$ , then it is trivially true . \\
+\begin{figure}
+\includegraphics[scale=0.6]{four.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\underline {\large{Base Case}} n = 1 is trivial .
+
+Let us assume it is true for n = k vertices .\\
+\underline {\large{Inductive Step}} : For n = k+1 \\
+From \hyperlink{page.24}{Lemma 1.1} , G must contain a vertex of degree $\leq$ 5 . \\
+Choose that vertex , denote it as v and now consider $G \setminus \{v\}$ , say G'\\
+If deg(v)$=$ 4
+\begin{figure}
+\includegraphics[scale=0.5]{f1.png}
+\end{figure}
+\end{frame}
+
+\begin{frame} 
+Case 1 : There is no edge between any two vertices
+\begin{figure}
+\includegraphics[scale=0.5]{f2.png}
+
+\end{figure}
+
+Then replace one of A or D(here D) with green colour 
+\end{frame}
+
+\begin{frame} 
+\begin{figure}
+\includegraphics[scale=0.5]{f3.png}
+\end{figure}
+
+So , red is free .
+\end{frame}
+
+\begin{frame} 
+\begin{figure}
+\includegraphics[scale=0.5]{f4.png}
+\end{figure}
+\end{frame}
+
+\begin{frame} 
+Case 2 : There is an edge between A and D
+\begin{figure}
+\includegraphics[scale=0.5]{f5.png}
+
+\end{figure}
+
+Here , both red and green are occupied but this guarantees that there is no edge between B and C (otherwise it would become non planar) .
+\end{frame}
+
+\begin{frame} 
+\begin{figure}
+\includegraphics[scale=0.5]{f6.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+Now , if deg(v) = 5 , \\
+\begin{figure}
+\includegraphics[scale=0.5]{f7.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+Case 1 : There is no edge between any two vertices.\\
+Then replace one of A or C(here C) with red colour and use the spare yellow to color v
+
+\begin{figure}
+\includegraphics[scale=0.5]{f8.png}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}
+Case 2 : A and C are connected \\
+
+\begin{figure}
+\includegraphics[scale=0.5]{f9.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+Subcase 2.1 : A and D are not connected \\
+Then replace one of A or D(here D) with red colour and use the spare green to color v
+
+\begin{figure}
+\includegraphics[scale=0.5]{f10.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+Subcase 2.2 : A and D are connected \\
+
+\begin{figure}
+\includegraphics[scale=0.5]{f11.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Kempe Chains}
+Suppose G is a graph with vertex set V, and we are given a colouring function
+c:V $\rightarrow$ S
+where S is a finite set of colours, containing at least two distinct colours p and q. If v is a vertex with colour p, then the (p, q)-Kempe chain of G containing v is the maximal connected subset of V which contains v and whose vertices are all coloured either p or q.
+\end{block}
+\begin{figure}
+\includegraphics[scale=0.5]{Kempe.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\underline{Kempe's Argument}
+\begin{enumerate}
+
+\item[1)] Start at each of the two nodes colored blue and create two Kempe chains, one with colors Blue and Green, and the other with colors Blue and Yellow. 
+
+\item[2)] From the node colored blue that is surrounded by the Red-Green Kempe chain (the blue on the left), he creates a Kempe chain with colors Blue and Yellow.
+
+\item[3)] From the node colored blue that is surrounded by the Red-Yellow Kempe chain (the Blue on the right), he creates a Kempe chain with colors Blue and Green.
+
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\begin{enumerate}
+\item[4)] The new Kempe chain with colors Blue and Green cannot reach the node adjacent to v colored Yellow, so the colors can be swapped, and blue becomes Yellow.  The new Kempe chain with colors Blue and Green cannot reach the node adjacent to v colored Green, so Blue becomes Green.
+
+\item[5)] Thus the Blue node on the right is colored Green and the Blue node on the left is colored Yellow.  This leaves the color Blue free for v, which is now adjacent to colors Y-G-Y-G-R (in counter-clockwise order around v)
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\begin{figure}
+\includegraphics[scale=0.5]{f13_c.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\begin{figure}
+\includegraphics[scale=0.5]{f14_c.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\begin{figure}
+\includegraphics[scale=0.5]{f15_c.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{The Flaw in Kempe's Proof}
+The counterexample comes from Subcase 2.2 , pointed out by Heawood in 1886.
+\begin{figure}
+\includegraphics[scale=0.4]{f16.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+
+Notice : A and C are connected and so are A and D
+Apply Kempe's method : Swap Blue and Yellow on the left side and Blue and Green on the right side .\\
+Clearly , now two adjacent vertices are coloured by Blue color . And therefore , Kempe's proof is invalid .
+\end{frame}
+
+\begin{frame}
+\begin{figure}
+\includegraphics[scale=0.4]{f17.png}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{The Algorithmic proof by Appel and Haken}
+\begin{block}{What is a minimum counterexample ?}
+In case of four color theorem , A $\mathbf{minimum}$ $\mathbf{counterexample}$ is the smallest planar graph that requires more than four colours for a proper colouring of its vertices.
+\end{block}
+Clearly ,\\
+\begin{block}{CLAIM}
+\Large{A minimum counterexample does not exist .}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Unavoidability}
+An unavoidable set is a set of configurations (or subgraphs) from which any planar graph has at least one member of the set as a subgraph.
+\end{block}
+\begin{block}{Reducible}
+A reducible configuration is a subgragh one if contained in a graph, any
+colouring of the rest of the graph can be extended into a colouring of the entire graph.
+\end{block}
+\end{frame}
+
+\begin{frame}
+From Kempe’s proof, we now know that a minimal counterexample cannot
+contain a vertex v such that deg(v) $\leq$ 4. We will therefore be limiting ourselves to graphs of vertices with a minimum of degree five.
+\end{frame}
+
+\begin{frame}
+So , the main aim of the proof becomes :
+Finding a set of subgraphs from which
+at least a member must be contained within every connected planar graph and secondly showing that these subgraphs are 4-colourable.\\
+.\\
+\Large{How to find this unavoidable set ?}
+\end{frame}
+
+\begin{frame}
+\begin{figure}
+\includegraphics[scale=0.4]{k_unav.png}
+\caption{Kempe's Unavoidable Set}
+\end{figure}
+
+Kempe was able to prove reducibility for digon,triangle and rectangle but gave a wrong proof for the pentagon ehich led to the wrong proof of the four color theorem that we have already discussed .
+\end{frame}
+
+\begin{frame}
+\begin{figure}
+\includegraphics[scale=0.2]{w_unav.png}
+\caption{Wernickes's Unavoidable Set}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Discharging Procedure - Heinrich Heesch}
+Discharging is used to identify an unavoidable set of configurations (which might not necessarily be reducible) by reallocating positive charge amongst vertices of a graph.
+\end{frame}
+
+\begin{frame}
+We assign a charge of $(6 - i)$ to every vertex where i is the degree of that particular vertex. 
+\begin{figure}
+\includegraphics[scale=0.4]{charge.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\begin{figure}
+\includegraphics[scale=0.4]{proof.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Reducibility}
+\begin{figure}
+\includegraphics[scale=0.4]{b_diamond.jpg}
+\end{figure}
+
+\begin{block}{Claim}
+Birkhoff Diamond is reducible
+\end{block}
+Suppose that we have a minimal counter-example that contains it. Removing the diamond yields a new map with fewer countries which can be colored with four colors. We now try to extend this coloring to the pentagons in the diamond.
+\end{frame}
+
+\begin{frame}
+To do so, we look at all the possible ways of coloring the ring of six countries surrounding the diamond with the colors red (r), blue (b), green (g), and
+yellow (y). It turns out that there are essentially thirty-one different colorings
+of the countries 1 to 6, sixteen of which (such as rgrbrg) can be extended directly to the countries of the diamond—these are called \textbf{good colorings} while
+all the others (such as rgbrgy) can be converted into \textbf{good colorings} by suitable
+Kempe-interchanges of color. Thus, all 31 colorings of the surrounding ring
+can be extended to the Birkhoff diamond, which is therefore reducible.
+\end{frame}
+
+
+\begin{frame}
+After this , the four color theorem was proved for first 25 and then 35 vertices .
+\end{frame}
+
+\begin{frame}
+Reducibility for the Birkhoff Diamond and many more configurations of increasing complexity was proved by the computer CDC
+1604A in 1965 , 11 years before the four colour theorem was actually proved .\\
+\textbf{\underline{ But the complexity increased with ring size !}}
+\begin{figure}
+\includegraphics[scale=0.4]{complex.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+It soon became clear that the Hanover computer was insufficiently powerful to carry out the work required of it. 
+So , they approached the University of Illinois for time on a new supercomputer Cray Control Data 6600
+machine whose construction was nearing completion, but it was not yet ready for use.\\
+A configuration with ring-size
+13 was not excessively large for the Cray computer, and those with ring-size 14 could be tested for the first time. Eventually, Heesch and D¨urre were able to confirm the D-reducibility of more than a thousand configurations.
+\end{frame}
+
+\begin{frame}{Haken's Original Statement}
+Even if the average time required for examining fourteen-ring configurations
+was only 25 minutes, the factor of four to the fourth power in passing from
+fourteen- to eighteen-rings would imply that the average eighteen-ring configuration would require over 100 hours of time and much more storage than was
+available on any existing computer. If there were a thousand configurations of
+ring-size 18, then the whole process would take over 100,000 hours, or about
+\textbf{eleven years}, on a fast computer.
+\end{frame}
+
+\begin{frame}{Approach Changed}
+Unlike everyone else whose objective seemed to be to collect reducible configurations by the hundreds and then package them up into an unavoidable set, Haken’s primary motivation, later developed with Appel, was to aim
+directly for an unavoidable set. In order to avoid wasting time checking configurations that would eventually be of no interest, this set was to contain
+only configurations that were likely to be reducible—in particular, they should
+contain none of the reduction obstacles. Any configurations that subsequently
+proved not to be reducible could then be dealt with individually. Haken also
+considered it inappropriate to spend expensive computer time checking the
+reducibility of configurations that were unlikely to appear in the eventual
+unavoidable set.
+\end{frame}
+
+\begin{frame}{Haken and Appel Together completed the proof}
+Since Haken had little knowledge of computers , he was joined by Appel to carry the proof forward . \\
+In the event, the final process involved
+487 discharging rules, requiring the investigation by hand of about 10,000
+neighborhoods of countries with positive charge and the reducibility testing
+by computer of some 2000 configurations.
+\end{frame}
+
+\begin{frame}
+Because the reducibility of an awkward configuration could sometimes take
+a long time to check, and with memories of the non-reducible Shimamoto
+horseshoe, they found it convenient to impose on each configuration an artificial limit of ninety minutes checking time on an IBM 370-158 computer, or
+thirty minutes on an IBM 370-168 computer. If a configuration could not be
+proved reducible in this time, it was abandoned and replaced by other configurations: finding such alternative configurations was usually straightforward.
+\end{frame}
+
+\begin{frame}
+\LARGE{\textbf{Four Colours Suffice}}
+\end{frame}
+
+
+\begin{frame}
+\centering
+\textbf{\LARGE{Thank You}}\\
+\{Rome was not built in a day\}
+\end{frame}
+
+\begin{frame}{References}
+\begin{itemize}
+\item[1)]GRAPH THEORY WITH APPLICATIONS by J. A. Bondy and U. S. R. Murty
+\item[2)] K. Appel, W. Haken, Every planar map is four colorable, Part I: discharging, Illinois Journal of Mathematics, 21: 429-90, 1977
+\item[3)] K. Appel, W. Haken, J. Koch, Every planar map is four colorable, Part II:
+reducibility, Illinois Journal of Mathematics
+\item[4)]Kenneth Appel, Wolfgang Haken, The Solution of the Four-Color-Map
+Problem, Sci. Amer. 237, 108-121, 1977.
+
+\end{itemize}
+\end{frame}
+
+
+
+
+
+
+\end{document}
